@@ -1,5 +1,5 @@
 # Substituição
-Este é um programa em C chamado substitution que permite criptografar mensagens usando uma cifra de substituição. A cifra de substituição é uma técnica de criptografia na qual cada letra do alfabeto é substituída por outra letra, determinada por uma chave fornecida pelo usuário.
+Este é um programa em C chamado `substitution` que permite criptografar mensagens usando uma cifra de substituição. A cifra de substituição é uma técnica de criptografia na qual cada letra do alfabeto é substituída por outra letra, determinada por uma chave fornecida pelo usuário.
 
 ## Funcionamento do programa
 Ao executar o programa, o usuário deve fornecer um único argumento de linha de comando, que será a chave para a cifra de substituição. A chave deve ser uma sequência de 26 caracteres alfabéticos, podendo ser em maiúsculas ou minúsculas. O programa irá ignorar a diferenciação de maiúsculas e minúsculas na chave.
