@@ -3,45 +3,46 @@
 #include <string.h>
 #include <ctype.h>
 
+// Funções de protótipo
 bool validate_key(string key);
 string encrypt_text(string text, string key);
 
 int main(int argc, string argv[])
 {
-    // Verificar se foi fornecido exatamente um argumento de linha de comando
+    // Verifica se foi fornecido exatamente um argumento na linha de comando
     if (argc != 2)
     {
-        printf("Usage: ./substitution key\n");
+        printf("Uso: ./substitution chave\n");
         return 1;
     }
 
     string key = argv[1];
 
-    // Verificar se a chave fornecida é válida
-    if (!validate_key(key))
+    // Verifica se a chave fornecida é válida
+    if(!validate_key(key))
     {
-        printf("Key must contain 26 characters, with no repeating characters.\n");
+        printf("A chave deve conter 26 caracteres, sem repetições.\n");
         return 1;
     }
 
-    // Solicitar o texto simples ao usuário
-    string plaintext = get_string("plaintext: ");
+    // Solicita ao usuário o texto simples
+    string plaintext = get_string("Texto simples: ");
 
-    // Criptografar o texto
+    // Criptografa o texto simples
     string ciphertext = encrypt_text(plaintext, key);
 
-    // Imprimir o texto cifrado
-    printf("ciphertext: %s\n", ciphertext);
+    // Imprime o texto cifrado
+    printf("Texto cifrado: %s\n", ciphertext);
 
     return 0;
 }
 
-// Validar se a chave fornecida é válida
+// Valida se a chave fornecida é válida
 bool validate_key(string key)
 {
     int len = strlen(key);
 
-    // Verificar se a chave possui 26 caracteres
+    // Verifica se a chave contém 26 caracteres
     if (len != 26)
     {
         return false;
@@ -49,61 +50,65 @@ bool validate_key(string key)
 
     bool used[26] = { false };
 
-    // Verificar se a chave contém apenas caracteres alfabéticos e sem repetições
+    // Verifica se a chave contém apenas caracteres alfabéticos e sem repetições
     for (int i = 0; i < len; i++)
     {
-        // Verificar se o caractere é uma letra
+
+        // Verifica se o caractere é uma letra
         if (!isalpha(key[i]))
         {
             return false;
         }
 
-        // Converter o caractere para minúsculo
-        char c = tolower(key[i]);
+        // Converte o caractere para maiúsculo
+        char uppercase = toupper(key[i]);
 
-        // Verificar se o caractere já foi usado na chave
-        if (used[c - 'a'])
+        // Verifica se o caractere já foi usado na chave
+        if (used[uppercase - 'A'])
         {
             return false;
         }
 
-        used[c - 'a'] = true;
+        used[uppercase - 'A'] = true;
     }
-
     return true;
 }
 
-// Criptografar o texto utilizando a chave fornecida
+// Criptografa o texto usando a chave fornecida
 string encrypt_text(string text, string key)
 {
+
     int len = strlen(text);
 
     for (int i = 0; i < len; i++)
     {
+
         char c = text[i];
 
-        // Verificar se o caractere é uma letra alfabética
+        // Verifica se o caractere é uma letra alfabética
         if (isalpha(c))
         {
-            // Converter o caractere para minúsculo
-            char lowercase = tolower(c);
 
-            // Obter o índice da letra na chave
-            int index = lowercase - 'a';
+            // Converte o caractere para maiúsculo
+            char uppercase = toupper(c);
 
-            // Verificar se o caractere original é maiúsculo
+            // Obtém o índice da letra na chave
+            int index = uppercase - 'A';
+
+            // Verifica se o caractere original é maiúsculo
             if (isupper(c))
             {
-                // Substituir o caractere pelo caractere correspondente na chave em maiúsculo
+
+                // Substitui o caractere pelo correspondente em maiúsculo da chave
                 text[i] = toupper(key[index]);
             }
             else
             {
-                // Substituir o caractere pelo caractere correspondente na chave em minúsculo
+
+                // Substitui o caractere pelo correspondente em minúsculo da chave
                 text[i] = tolower(key[index]);
             }
         }
     }
-
     return text;
 }
