@@ -44,7 +44,8 @@ Este programa possui as seguintes limitações:
 A chave deve conter exatamente 26 caracteres alfabéticos, sem repetições.
 Caracteres não alfabéticos (como espaços, vírgulas, pontuação, etc.) não são alterados pela cifra de substituição.
 O programa não lida com a decodificação de textos cifrados. Ele é projetado apenas para criptografar textos usando a cifra de substituição.
-Boas práticas de uso
+
+##Boas práticas de uso
 Ao usar o programa, certifique-se de seguir as boas práticas de segurança:
 
 Mantenha a chave em segredo, pois é o componente principal para descriptografar o texto.
